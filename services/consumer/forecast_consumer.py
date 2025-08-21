@@ -1,5 +1,7 @@
 from aiokafka import AIOKafkaConsumer
 import os, json, asyncio, dotenv
+from forecaster import SarimaxForecaster
+import pandas as pd
 
 # Load environment variables from .env file
 dotenv.load_dotenv()
@@ -22,6 +24,8 @@ async def consume():
     try:
         # Consume messages
         async for msg in consumer:
+            # TODO: Implement retraining for SarimaxForecaster
+
             print("consumed: ", msg.topic, msg.partition, msg.offset,
                   msg.key, msg.value, msg.timestamp)
     finally:
